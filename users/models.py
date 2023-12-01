@@ -1,3 +1,4 @@
+from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -9,6 +10,8 @@ class User(AbstractUser):
     phone = models.CharField(max_length=35, verbose_name='Телефон', **NULLABLE)
     city = models.CharField(max_length=150, verbose_name='Город', **NULLABLE)
 
+    chat_id = models.IntegerField(unique=True, **NULLABLE, verbose_name='id чата')
+
     def __str__(self):
         return f"{self.last_name} {self.first_name} ({self.email})"
 
@@ -16,3 +19,5 @@ class User(AbstractUser):
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
         ordering = ('pk',)
+
+
